@@ -27,54 +27,55 @@ import org.mule.tck.junit4.FunctionalTestCase;
  */
 public class FlowsTest extends FunctionalTestCase {
 
-    @BeforeClass
-    public static void beforeClass() {
-        System.setProperty("mule.env", "test");
-    }
+	@BeforeClass
+	public static void beforeClass() {
+		System.setProperty("mule.env", "test");
+	}
 
-    @AfterClass
-    public static void afterClass() {
-        System.getProperties().remove("mule.env");
-    }
+	@AfterClass
+	public static void afterClass() {
+		System.getProperties().remove("mule.env");
+	}
 
-    @Before
-    public void setUp() {
+	@Before
+	public void setUp() {
 
-    }
+	}
 
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Override
-    protected String getConfigResources() {
-        //TODO: Add here the configuration files to be used by your tests others than the ones in the application
-        Properties props = new Properties();
-        try {
-            props.load(new FileInputStream("./src/main/app/mule-deploy.properties"));
-            return props.getProperty("config.resources");
-        } catch (Exception e) {
-            throw new IllegalStateException(
-                    "Could not find mule-deploy.properties file on classpath. Please add any of those files or override the getConfigResources() method to provide the resources by your own.");
-        }
-    }
+	@Override
+	protected String getConfigResources() {
+		// TODO: Add here the configuration files to be used by your tests
+		// others than the ones in the application
+		Properties props = new Properties();
+		try {
+			props.load(new FileInputStream("./src/main/app/mule-deploy.properties"));
+			return props.getProperty("config.resources");
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Could not find mule-deploy.properties file on classpath. Please add any of those files or override the getConfigResources() method to provide the resources by your own.");
+		}
+	}
 
-    @Override
-    protected Properties getStartUpProperties() {
-        Properties properties = new Properties(super.getStartUpProperties());
+	@Override
+	protected Properties getStartUpProperties() {
+		Properties properties = new Properties(super.getStartUpProperties());
 
-        String pathToResource = "./mappings";
-        File graphFile = new File(pathToResource);
+		String pathToResource = "./mappings";
+		File graphFile = new File(pathToResource);
 
-        properties.put(MuleProperties.APP_HOME_DIRECTORY_PROPERTY, graphFile.getAbsolutePath());
+		properties.put(MuleProperties.APP_HOME_DIRECTORY_PROPERTY, graphFile.getAbsolutePath());
 
-        return properties;
-    }
+		return properties;
+	}
 
-    @Test
-    public void testAFlow() throws Exception {
-        //TODO: Add here a valid tests 
-        Assert.assertTrue("You should really be adding test to you kick.", false);
-    }
+	@Test
+	public void testAFlow() throws Exception {
+		// TODO: Add here a valid tests
+		// Assert.assertTrue("You should really be adding test to you kick.",
+		// false);
+	}
 }
-
