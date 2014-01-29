@@ -15,6 +15,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
+import org.mule.kicks.builders.SfdcEntityBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SFDCUsersMergeTest {
@@ -36,7 +37,7 @@ public class SFDCUsersMergeTest {
 
 		SFDCAccountsMerge transformer = new SFDCAccountsMerge();
 		List<Map<String, String>> mergedList = (List<Map<String, String>>) transformer.transform(message, "UTF-8");
-		
+
 		System.out.println(accountsA);
 		System.out.println(accountsB);
 		System.out.println(mergedList);
@@ -45,40 +46,43 @@ public class SFDCUsersMergeTest {
 	}
 
 	private List<Map<String, String>> createExpectedList() {
-		Map<String, String> user0 = new HashMap<String, String>();
-		user0.put("Name", "SomeName_0");
-		user0.put("IDInA", "0");
-		user0.put("IndustryInA", "Goverment");
-		user0.put("NumberOfEmployeesInA", "550.0");
-		user0.put("IDInB", "");
-		user0.put("IndustryInB", "");
-		user0.put("NumberOfEmployeesInB", "");
 
-		Map<String, String> user1 = new HashMap<String, String>();
-		user1.put("Name", "SomeName_1");
-		user1.put("IDInA", "1");
-		user1.put("IndustryInA", "Goverment");
-		user1.put("NumberOfEmployeesInA", "550.0");
-		user1.put("IDInB", "1");
-		user1.put("IndustryInB", "Goverment");
-		user1.put("NumberOfEmployeesInB", "550.0");
+		Map<String, String> account0 = createEmptyMergedRecord(0);
+		account0.put("IDInA", "0");
+		account0.put("IndustryInA", "Goverment");
+		account0.put("NumberOfEmployeesInA", "550.0");
 
-		Map<String, String> user2 = new HashMap<String, String>();
-		user2.put("Name", "SomeName_2");
-		user2.put("IDInA", "");
-		user2.put("IndustryInA", "");
-		user2.put("NumberOfEmployeesInA", "");
-		user2.put("IDInB", "2");
-		user2.put("IndustryInB", "Goverment");
-		user2.put("NumberOfEmployeesInB", "550.0");
+		Map<String, String> account1 = createEmptyMergedRecord(1);
+		account1.put("IDInA", "1");
+		account1.put("IndustryInA", "Goverment");
+		account1.put("NumberOfEmployeesInA", "550.0");
+		account1.put("IDInB", "1");
+		account1.put("IndustryInB", "Goverment");
+		account1.put("NumberOfEmployeesInB", "550.0");
+
+		Map<String, String> account2 = createEmptyMergedRecord(2);
+		account2.put("IDInB", "2");
+		account2.put("IndustryInB", "Goverment");
+		account2.put("NumberOfEmployeesInB", "550.0");
 
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(user0);
-		userList.add(user1);
-		userList.add(user2);
+		userList.add(account0);
+		userList.add(account1);
+		userList.add(account2);
 
 		return userList;
+	}
 
+	private Map<String, String> createEmptyMergedRecord(Integer secuense) {
+		Map<String, String> account = new HashMap<String, String>();
+		account.put("Name", "SomeName_" + secuense);
+		account.put("IDInA", "");
+		account.put("IndustryInA", "");
+		account.put("NumberOfEmployeesInA", "");
+		account.put("IDInB", "");
+		account.put("IndustryInB", "");
+		account.put("NumberOfEmployeesInB", "");
+		return account;
 	}
 
 	private List<Map<String, String>> createAccountLists(String orgId, int start, int end) {

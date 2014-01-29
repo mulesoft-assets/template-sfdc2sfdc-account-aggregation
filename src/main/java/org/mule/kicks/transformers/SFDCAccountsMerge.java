@@ -10,6 +10,8 @@ import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 import org.mule.transformer.AbstractMessageTransformer;
 
+import com.google.common.collect.Lists;
+
 /**
  * This transformer will take two lists as input and create a third one that
  * will be the merge of the previous two. The identity of list's element is
@@ -32,15 +34,7 @@ public class SFDCAccountsMerge extends AbstractMessageTransformer {
 
 	private List<Map<String, String>> getAccountsList(MuleMessage message, String propertyName) {
 		Iterator<Map<String, String>> iterator = message.getInvocationProperty(propertyName);
-		return consumeIterator(iterator);
-	}
-
-	private List<Map<String, String>> consumeIterator(Iterator<Map<String, String>> iterator) {
-		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-		while (iterator.hasNext()) {
-			list.add(iterator.next());
-		}
-		return list;
+		return Lists.newArrayList(iterator);
 	}
 
 	/**
@@ -53,7 +47,7 @@ public class SFDCAccountsMerge extends AbstractMessageTransformer {
 	 * @return a list with the merged content of the to input lists
 	 */
 	private List<Map<String, String>> mergeList(List<Map<String, String>> accountsFromOrgA, List<Map<String, String>> accountsFromOrgB) {
-		List<Map<String, String>> mergedUsersList = new ArrayList<Map<String, String>>();
+		List<Map<String, String>> mergedAccountList = new ArrayList<Map<String, String>>();
 
 		// Put all accounts from A in the merged contactList
 		for (Map<String, String> accountFromA : accountsFromOrgA) {
@@ -61,12 +55,12 @@ public class SFDCAccountsMerge extends AbstractMessageTransformer {
 			mergedAccount.put("IDInA", accountFromA.get("Id"));
 			mergedAccount.put("IndustryInA", accountFromA.get("Industry"));
 			mergedAccount.put("NumberOfEmployeesInA", accountFromA.get("NumberOfEmployees"));
-			mergedUsersList.add(mergedAccount);
+			mergedAccountList.add(mergedAccount);
 		}
 
 		// Add the new accounts from B and update the exiting ones
 		for (Map<String, String> accountFromB : accountsFromOrgB) {
-			Map<String, String> accountFromA = findAccountInList(accountFromB.get("Name"), mergedUsersList);
+			Map<String, String> accountFromA = findAccountInList(accountFromB.get("Name"), mergedAccountList);
 			if (accountFromA != null) {
 				accountFromA.put("IDInB", accountFromB.get("Id"));
 				accountFromA.put("IndustryInB", accountFromB.get("Industry"));
@@ -76,11 +70,11 @@ public class SFDCAccountsMerge extends AbstractMessageTransformer {
 				mergedAccount.put("IDInB", accountFromB.get("Id"));
 				mergedAccount.put("IndustryInB", accountFromB.get("Industry"));
 				mergedAccount.put("NumberOfEmployeesInB", accountFromB.get("NumberOfEmployees"));
-				mergedUsersList.add(mergedAccount);
+				mergedAccountList.add(mergedAccount);
 			}
 
 		}
-		return mergedUsersList;
+		return mergedAccountList;
 	}
 
 	private Map<String, String> createMergedAccount(Map<String, String> account) {
