@@ -16,6 +16,12 @@ import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 
+/**
+ * The test validates that the {@link SortAccountsList} properly order a list of
+ * maps based on it internal criteria.
+ * 
+ * @author damiansima
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class SortUsersListTest {
 
@@ -37,53 +43,53 @@ public class SortUsersListTest {
 	}
 
 	private List<Map<String, String>> createExpectedList() {
-		Map<String, String> user0 = new HashMap<String, String>();
-		user0.put("IDInA", "0");
-		user0.put("IDInB", "");
-		user0.put("Name", "SomeName_0");
+		Map<String, String> account0 = createEmptyMergedRecord(0);
+		account0.put("IDInA", "0");
 
-		Map<String, String> user1 = new HashMap<String, String>();
-		user1.put("IDInA", "1");
-		user1.put("IDInB", "1");
-		user1.put("Name", "SomeName_1");
+		Map<String, String> account1 = createEmptyMergedRecord(1);
+		account1.put("IDInA", "1");
+		account1.put("IDInB", "1");
 
-		Map<String, String> user2 = new HashMap<String, String>();
-		user2.put("IDInA", "");
-		user2.put("IDInB", "2");
-		user2.put("Name", "SomeName_2");
+		Map<String, String> account2 = createEmptyMergedRecord(2);
+		account2.put("IDInB", "2");
 
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(user0);
-		userList.add(user2);
-		userList.add(user1);
+		userList.add(account0);
+		userList.add(account2);
+		userList.add(account1);
 
 		return userList;
-
 	}
 
 	private List<Map<String, String>> createOriginalList() {
-		Map<String, String> user0 = new HashMap<String, String>();
-		user0.put("IDInA", "0");
-		user0.put("IDInB", "");
-		user0.put("Name", "SomeName_0");
+		Map<String, String> account0 = createEmptyMergedRecord(0);
+		account0.put("IDInA", "0");
 
-		Map<String, String> user1 = new HashMap<String, String>();
-		user1.put("IDInA", "1");
-		user1.put("IDInB", "1");
-		user1.put("Name", "SomeName_1");
+		Map<String, String> account1 = createEmptyMergedRecord(1);
+		account1.put("IDInA", "1");
+		account1.put("IDInB", "1");
 
-		Map<String, String> user2 = new HashMap<String, String>();
-		user2.put("IDInA", "");
-		user2.put("IDInB", "2");
-		user2.put("Name", "SomeName_2");
+		Map<String, String> account2 = createEmptyMergedRecord(2);
+		account2.put("IDInB", "2");
 
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(user0);
-		userList.add(user1);
-		userList.add(user2);
+		userList.add(account0);
+		userList.add(account1);
+		userList.add(account2);
 
 		return userList;
+	}
 
+	private Map<String, String> createEmptyMergedRecord(Integer secuense) {
+		Map<String, String> account = new HashMap<String, String>();
+		account.put("Name", "SomeName_" + secuense);
+		account.put("IDInA", "");
+		account.put("IndustryInA", "");
+		account.put("NumberOfEmployeesInA", "");
+		account.put("IDInB", "");
+		account.put("IndustryInB", "");
+		account.put("NumberOfEmployeesInB", "");
+		return account;
 	}
 
 }
