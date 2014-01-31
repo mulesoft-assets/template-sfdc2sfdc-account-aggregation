@@ -44,21 +44,17 @@ public class SortAccountsList extends AbstractMessageTransformer {
 			StringBuilder key = new StringBuilder();
 
 			if (StringUtils.isNotBlank(user.get("IDInA")) && StringUtils.isNotBlank(user.get("IDInB"))) {
-				key.append("~~");
-				key.append(user.get("IDInA"));
-				key.append(user.get("IDInB"));
+				key.append("~~~");
 				key.append(user.get(IDENTITY_FIELD_KEY));
 			}
 
 			if (StringUtils.isNotBlank(user.get("IDInA")) && StringUtils.isBlank(user.get("IDInB"))) {
-				key.append(user.get("IDInA"));
 				key.append("~");
 				key.append(user.get(IDENTITY_FIELD_KEY));
 			}
 
 			if (StringUtils.isBlank(user.get("IDInA")) && StringUtils.isNotBlank(user.get("IDInB"))) {
-				key.append("~");
-				key.append(user.get("IDInB"));
+				key.append("~~");
 				key.append(user.get(IDENTITY_FIELD_KEY));
 			}
 
