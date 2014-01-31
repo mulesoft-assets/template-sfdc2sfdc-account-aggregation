@@ -31,13 +31,14 @@ public class SortUsersListTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testSort() throws TransformerException {
-
-		MuleMessage message = new DefaultMuleMessage(createOriginalList(), muleContext);
+		List<Map<String, String>> originalList = createOriginalList();
+		MuleMessage message = new DefaultMuleMessage(originalList, muleContext);
 
 		SortAccountsList transformer = new SortAccountsList();
 		List<Map<String, String>> sortedList = (List<Map<String, String>>) transformer.transform(message, "UTF-8");
 
-		System.out.println(sortedList);
+		// System.out.println(originalList);
+		// System.out.println(sortedList);
 		Assert.assertEquals("The merged list obtained is not as expected", createExpectedList(), sortedList);
 
 	}
@@ -52,12 +53,17 @@ public class SortUsersListTest {
 
 		Map<String, String> account2 = createEmptyMergedRecord(2);
 		account2.put("IDInB", "2");
+		
+		Map<String, String> account3 = createEmptyMergedRecord(3);
+		account3.put("IDInA", "3");
+		account3.put("IDInB", "3");
 
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
 		userList.add(account0);
 		userList.add(account2);
 		userList.add(account1);
-
+		userList.add(account3);
+		
 		return userList;
 	}
 
@@ -71,11 +77,16 @@ public class SortUsersListTest {
 
 		Map<String, String> account2 = createEmptyMergedRecord(2);
 		account2.put("IDInB", "2");
+		
+		Map<String, String> account3 = createEmptyMergedRecord(3);
+		account3.put("IDInA", "3");
+		account3.put("IDInB", "3");
 
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
 		userList.add(account0);
 		userList.add(account1);
 		userList.add(account2);
+		userList.add(account3);
 
 		return userList;
 	}
