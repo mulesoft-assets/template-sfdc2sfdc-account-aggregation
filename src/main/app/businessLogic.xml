@@ -18,12 +18,12 @@ This flow should control the direction of the application, and it should be call
     </flow>
   
     <sub-flow name="gatherDataFlow" doc:name="gatherDataFlow">
-        <enricher source="#[payload]" target="#[flowVars['accountsFromOrgA']]" doc:name="Store result in FlowVar 'accountsFromOrgA'">
-            <sfdc:query config-ref="SalesforceA" query="dsql:SELECT Id,AccountNumber,Description,Industry,Name,NumberOfEmployees FROM Account" doc:name="query all accounts from SalesForce instance A"/>
+        <enricher source="#[payload]" target="#[flowVars['accountsFromOrgA']]" doc:name="store result in FlowVar 'accountsFromOrgA'">
+            <sfdc:query-all config-ref="SalesforceA" query="SELECT Id, Description, Industry, Name, NumberOfEmployees, (SELECT FirstName, LastName, Email FROM Contacts) FROM Account" doc:name="query all accounts from SalesForce instance A"/>
         </enricher>
  
-        <enricher source="#[payload]" target="#[flowVars['accountsFromOrgB']]" doc:name="Store result in FlowVar 'accountsFromOrgB'">
-            <sfdc:query config-ref="SalesforceB" query="dsql:SELECT Id,AccountNumber,Description,Industry,Name,NumberOfEmployees FROM Account" doc:name="query all accounts from SalesForce instance A"/>
+        <enricher source="#[payload]" target="#[flowVars['accountsFromOrgB']]" doc:name="store result in FlowVar 'accountsFromOrgB'">
+            <sfdc:query-all config-ref="SalesforceB" query="SELECT Id, Description, Industry, Name, NumberOfEmployees, (SELECT FirstName, LastName, Email FROM Contacts) FROM Account" doc:name="query all accounts from SalesForce instance B"/>
         </enricher>
     </sub-flow>
 
@@ -32,9 +32,9 @@ This flow should control the direction of the application, and it should be call
     </sub-flow>
     
     <sub-flow name="formatOutputFlow" doc:name="formatOutputFlow">
-        <custom-transformer class="org.mule.kicks.transformers.SortAccountsList" doc:name="Custom component to sort accounts list"/>
+        <custom-transformer class="org.mule.kicks.transformers.SortAccountsList" doc:name="sort accounts list"/>
         <data-mapper:transform config-ref="map_to_csv" doc:name="transform Collection of Maps to CSV Format"/>
 
-        <object-to-string-transformer doc:name="CSV Output Object to String"/>
+        <object-to-string-transformer doc:name="transform CSV Output Object to String"/>
     </sub-flow>
 </mule>

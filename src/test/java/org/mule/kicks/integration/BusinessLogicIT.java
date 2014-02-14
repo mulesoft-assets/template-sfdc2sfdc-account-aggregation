@@ -12,6 +12,8 @@ import org.mule.api.MuleEvent;
 import org.mule.processor.chain.SubflowInterceptingChainLifecycleWrapper;
 import org.mule.streaming.ConsumerIterator;
 
+import com.google.common.collect.Lists;
+
 /**
  * The objective of this class is to validate the correct behavior of the flows
  * for this Mule Kick that make calls to external systems.
@@ -46,6 +48,7 @@ public class BusinessLogicIT extends AbstractKickTestCase {
 		Assert.assertTrue("There should be users in the variable usersFromOrgA.", accountsFromOrgA.size() != 0);
 		Assert.assertTrue("There should be users in the variable usersFromOrgB.", accountsFromOrgB.size() != 0);
 
+		System.out.println("accounts from a: " + Lists.newArrayList(accountsFromOrgA));
 	}
 
 }
