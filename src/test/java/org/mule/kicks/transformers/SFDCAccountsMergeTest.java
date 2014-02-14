@@ -15,7 +15,6 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
-import org.mule.kicks.builders.SfdcEntityBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SFDCAccountsMergeTest {
@@ -73,11 +72,11 @@ public class SFDCAccountsMergeTest {
 		return userList;
 	}
 
-	private Map<String, Object> createEmptyMergedRecord(Integer secuence) {
+	private Map<String, Object> createEmptyMergedRecord(int sequence) {
 		Map<String, Object> contactsMap = new HashMap<String, Object>();
 		
 		Map<String, Object> account = new HashMap<String, Object>();
-		account.put("Name", "SomeName_" + secuence);
+		account.put("Name", "SomeName_" + sequence);
 		account.put("IDInA", "");
 		account.put("IndustryInA", "");
 		account.put("NumberOfEmployeesInA", "");
