@@ -6,11 +6,13 @@ import java.util.Set;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mule.MessageExchangePattern;
 import org.mule.api.MuleEvent;
 import org.mule.processor.chain.SubflowInterceptingChainLifecycleWrapper;
 import org.mule.streaming.ConsumerIterator;
+import org.mule.tck.junit4.rule.DynamicPort;
 
 /**
  * The objective of this class is to validate the correct behavior of the flows
@@ -21,6 +23,9 @@ public class BusinessLogicIT extends AbstractKickTestCase {
 	private static final String ACCOUNTS_COMPANY_A = "accountsFromOrgA";
 	private static final String ACCOUNTS_COMPANY_B = "accountsFromOrgB";
 
+	@Rule
+	public DynamicPort port = new DynamicPort ("http.port");
+	
 	@Before
 	public void setUp() {
 	}
