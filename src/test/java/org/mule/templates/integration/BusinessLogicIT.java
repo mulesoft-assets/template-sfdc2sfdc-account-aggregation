@@ -1,4 +1,4 @@
-package org.mule.kicks.integration;
+package org.mule.templates.integration;
 
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +19,7 @@ import org.mule.tck.junit4.rule.DynamicPort;
  * for this Mule Kick that make calls to external systems.
  * 
  */
-public class BusinessLogicIT extends AbstractKickTestCase {
+public class BusinessLogicIT extends AbstractTemplateTestCase {
 	private static final String ACCOUNTS_COMPANY_A = "accountsFromOrgA";
 	private static final String ACCOUNTS_COMPANY_B = "accountsFromOrgB";
 

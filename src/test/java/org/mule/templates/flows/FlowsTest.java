@@ -1,4 +1,4 @@
-package org.mule.kicks.flows;
+package org.mule.templates.flows;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,19 +23,9 @@ import org.mule.tck.junit4.FunctionalTestCase;
 
 /**
  * The objective of this class is to validate the correct behavior of the flows
- * for this Mule Kick.
+ * for this Mule Template.
  */
 public class FlowsTest extends FunctionalTestCase {
-
-	@BeforeClass
-	public static void beforeClass() {
-		System.setProperty("mule.env", "test");
-	}
-
-	@AfterClass
-	public static void afterClass() {
-		System.getProperties().remove("mule.env");
-	}
 
 	@Before
 	public void setUp() {

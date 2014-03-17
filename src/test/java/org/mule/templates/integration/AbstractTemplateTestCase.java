@@ -1,4 +1,4 @@
-package org.mule.kicks.integration;
+package org.mule.templates.integration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,11 +12,11 @@ import org.mule.processor.chain.SubflowInterceptingChainLifecycleWrapper;
 import org.mule.tck.junit4.FunctionalTestCase;
 
 /**
- * This is the base test class for Kicks integration tests.
+ * This is the base test class for Templates integration tests.
  * 
  * @author damiansima
  */
-public class AbstractKickTestCase extends FunctionalTestCase {
+public class AbstractTemplateTestCase extends FunctionalTestCase {
 	private static final String MAPPINGS_FOLDER_PATH = "./mappings";
 	private static final String TEST_FLOWS_FOLDER_PATH = "./src/test/resources/flows/";
 	private static final String MULE_DEPLOY_PROPERTIES_PATH = "./src/main/app/mule-deploy.properties";

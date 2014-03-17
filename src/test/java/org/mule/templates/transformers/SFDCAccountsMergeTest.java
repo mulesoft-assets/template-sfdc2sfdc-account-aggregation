@@ -1,4 +1,4 @@
-package org.mule.kicks.transformers;
+package org.mule.templates.transformers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +15,11 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
-import org.mule.kicks.builders.SfdcEntityBuilder;
+import org.mule.templates.builders.SfdcEntityBuilder;
 import org.mule.templates.transformers.SFDCAccountsMerge;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SFDCUsersMergeTest {
+public class SFDCAccountsMergeTest {
 	private static final String ACCOUNTS_COMPANY_A = "accountsFromOrgA";
 	private static final String ACCOUNTS_COMPANY_B = "accountsFromOrgB";
 

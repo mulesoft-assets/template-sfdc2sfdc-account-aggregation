@@ -1,4 +1,4 @@
-package org.mule.kicks.transformers;
+package org.mule.templates.transformers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import org.mule.templates.transformers.SortAccountsList;
  * @author damiansima
  */
 @RunWith(MockitoJUnitRunner.class)
-public class SortUsersListTest {
+public class SortAccountsListTest {
 
 	@Mock
 	private MuleContext muleContext;
