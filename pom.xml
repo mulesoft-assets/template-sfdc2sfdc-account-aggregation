@@ -6,7 +6,7 @@
 	<groupId>org.mule.templates</groupId>
 	<artifactId>sfdc2sfdc-account-aggregation</artifactId>
 	<packaging>mule</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>sfdc2sfdc-account-aggregation Mule Template Project</name>
 
 	<properties>
