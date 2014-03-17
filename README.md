@@ -1,10 +1,10 @@
 
-# Mule Kick: SFDC to SFDC Accounts Aggregation
+# Anypoint Template: SFDC to SFDC Account Aggregation
 
 + [Use Case](#usecase)
 + [Run it!](#runit)
     * [Running on CloudHub](#runoncloudhub)
-    	* [Deploying your Kick on CloudHub](#deployingyourkickoncloudhub)
+    	* [Deploying your Template on CloudHub](#deployingyourtemplateoncloudhub)
     * [Running on premise](#runonopremise)
         * [Properties to be configured](#propertiestobeconfigured)
 + [Customize It!](#customizeit)
@@ -12,7 +12,7 @@
     * [inboundEndpoints.xml](#inboundendpointsxml)
     * [businessLogic.xml](#businesslogicxml)
     * [errorHandling.xml](#errorhandlingxml)
-+ [Testing the Kick](#testingthekick)
++ [Testing the Template](#testingthetemplate)
 
 # Use Case <a name="usecase"/>
 
@@ -27,8 +27,8 @@ While [creating your application on CloudHub](http://www.mulesoft.org/documentat
 
 Once your app is all set and started, supposing you choose as domain name `sfdc2sfdc-accounts-aggregation` to trigger the use case you just need to hit `http://sfdc2sfdc-accounts-aggregation.cloudhub.io/generatereport` and report will be sent to the emails configured.
 
-### Deploying your Kick on CloudHub <a name="deployingyourkickoncloudhub"/>
-Mule Studio provides you with really easy way to deploy your Kick directly to CloudHub, for the specific steps to do so please check this [link](http://www.mulesoft.org/documentation/display/current/Deploying+Mule+Applications#DeployingMuleApplications-DeploytoCloudHub)
+### Deploying your Template on CloudHub <a name="deployingyourtemplateoncloudhub"/>
+Mule Studio provides you with really easy way to deploy your Template directly to CloudHub, for the specific steps to do so please check this [link](http://www.mulesoft.org/documentation/display/current/Deploying+Mule+Applications#DeployingMuleApplications-DeploytoCloudHub)
 
 
 ## Running on premise <a name="runonopremise"/>
@@ -37,7 +37,7 @@ Complete all properties in one of the property files, for example in [mule.prod.
 After this, to trigger the use case you just need to hit the local http endpoint with the port you configured in your file. If this is, for instance, `9090` then you should hit: `http://localhost:9090/generatereport` and this will create a CSV report and send it to the mails set.
 
 ## Properties to be configured (With examples)<a name="propertiestobeconfigured"/>
-In order to use this Mule Kick you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
+In order to use this Mule Template you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
 
 ### Application configuration
 + http.port `9090` 
@@ -69,8 +69,8 @@ In order to use this Mule Kick you need to configure properties (Credentials, co
 + attachment.name `accounts_report.csv`
 
 # Customize It!<a name="customizeit"/>
-This brief guide intends to give a high level idea of how this Kick is built and how you can change it according to your needs.
-As mule applications are based on XML files, this page will be organised by describing all the XML that conform the Kick.
+This brief guide intends to give a high level idea of how this Template is built and how you can change it according to your needs.
+As mule applications are based on XML files, this page will be organised by describing all the XML that conform the Template.
 Of course more files will be found such as Test Classes and [Mule Application Files](http://www.mulesoft.org/documentation/display/current/Application+Format), but to keep it simple we will focus on the XMLs.
 
 Here is a list of the main XML files you'll find in this application:
@@ -90,7 +90,7 @@ In the visual editor they can be found on the *Global Element* tab.
 
 
 ## indboundEndpoints.xml<a name="inbpundendpointsxml"/>
-This is the file where you will found the inbound and outbound sides of your integration app. This Kick has an HTTP Inbound Endpoint as the way to trigger the use case and an SMTP Transport as the outbound way to send the report.
+This is the file where you will found the inbound and outbound sides of your integration app. This Template has an HTTP Inbound Endpoint as the way to trigger the use case and an SMTP Transport as the outbound way to send the report.
 
 ###  Trigger Flow
 **HTTP Inbound Endpoint** - Start Report Generation
@@ -105,7 +105,7 @@ This is the file where you will found the inbound and outbound sides of your int
 
 
 ## businessLogic.xml<a name="businesslogicxml"/>
-Functional aspect of the kick is implemented on this XML, directed by one flow responsible of conducting the aggregation of data, comparing records and finally formating the output, in this case being a report.
+Functional aspect of the Template is implemented on this XML, directed by one flow responsible of conducting the aggregation of data, comparing records and finally formating the output, in this case being a report.
 The *mainFlow* organises the job in three different steps and finally invokes the *outboundFlow* that will deliver the report to the corresponding outbound endpoint.
 This flow has Exception Strategy that basically consists on invoking the *defaultChoiseExceptionStrategy* defined in *errorHandling.xml* file.
 
@@ -137,9 +137,9 @@ This is the right place to handle how your integration will react depending on t
 This file holds a [Choice Exception Strategy](http://www.mulesoft.org/documentation/display/current/Choice+Exception+Strategy) that is referenced by the main flow in the business logic.
 
 
-## Testing the Kick <a name="testingthekick"/>
+## Testing the Template <a name="testingthetemplate"/>
 
-You will notice that the Kick has been shipped with test.
+You will notice that the Template has been shipped with test.
 These devidi them self into two categories:
 
 + Unit Tests
