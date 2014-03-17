@@ -15,6 +15,7 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
+import org.mule.templates.transformers.SortAccountsList;
 
 /**
  * The test validates that the {@link SortAccountsList} properly order a list of

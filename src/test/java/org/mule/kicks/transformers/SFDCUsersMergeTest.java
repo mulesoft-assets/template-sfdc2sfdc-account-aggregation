@@ -16,6 +16,7 @@ import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 import org.mule.kicks.builders.SfdcEntityBuilder;
+import org.mule.templates.transformers.SFDCAccountsMerge;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SFDCUsersMergeTest {
