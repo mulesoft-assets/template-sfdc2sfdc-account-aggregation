@@ -37,13 +37,15 @@ public class SFDCAccountsMergeTest {
 		message.setInvocationProperty(ACCOUNTS_COMPANY_B, accountsB.iterator());
 
 		SFDCAccountsMerge transformer = new SFDCAccountsMerge();
-		List<Map<String, String>> mergedList = (List<Map<String, String>>) transformer.transform(message, "UTF-8");
+		List<Map<String, String>> mergedList = (List<Map<String, String>>) transformer
+				.transform(message, "UTF-8");
 
 		System.out.println(accountsA);
 		System.out.println(accountsB);
 		System.out.println(mergedList);
 
-		Assert.assertEquals("The merged list obtained is not as expected", createExpectedList(), mergedList);
+		Assert.assertEquals("The merged list obtained is not as expected",
+				createExpectedList(), mergedList);
 	}
 
 	private List<Map<String, String>> createExpectedList() {
@@ -86,7 +88,8 @@ public class SFDCAccountsMergeTest {
 		return account;
 	}
 
-	private List<Map<String, String>> createAccountLists(String orgId, int start, int end) {
+	private List<Map<String, String>> createAccountLists(String orgId,
+			int start, int end) {
 		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
 		for (int i = start; i <= end; i++) {
 			userList.add(createAccount(orgId, i));

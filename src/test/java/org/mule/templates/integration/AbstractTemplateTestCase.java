@@ -37,21 +37,22 @@ public class AbstractTemplateTestCase extends FunctionalTestCase {
 	}
 
 	protected String getTestFlows() {
-            StringBuilder resources = new StringBuilder();
+		StringBuilder resources = new StringBuilder();
 
-            File testFlowsFolder = new File(TEST_FLOWS_FOLDER_PATH);
-            File[] listOfFiles = testFlowsFolder.listFiles();
-            if (listOfFiles != null) {
-                    for (File f : listOfFiles) {
-                            if (f.isFile() && f.getName().endsWith("xml")) {
-                                    resources.append(",").append(TEST_FLOWS_FOLDER_PATH).append(f.getName());
-                            }
-                    }
-                    return resources.toString();
-            } else {
-                    return "";
-            }
-        }
+		File testFlowsFolder = new File(TEST_FLOWS_FOLDER_PATH);
+		File[] listOfFiles = testFlowsFolder.listFiles();
+		if (listOfFiles != null) {
+			for (File f : listOfFiles) {
+				if (f.isFile() && f.getName().endsWith("xml")) {
+					resources.append(",").append(TEST_FLOWS_FOLDER_PATH)
+							.append(f.getName());
+				}
+			}
+			return resources.toString();
+		} else {
+			return "";
+		}
+	}
 
 	@Override
 	protected Properties getStartUpProperties() {
@@ -60,7 +61,8 @@ public class AbstractTemplateTestCase extends FunctionalTestCase {
 		String pathToResource = MAPPINGS_FOLDER_PATH;
 		File graphFile = new File(pathToResource);
 
-		properties.put(MuleProperties.APP_HOME_DIRECTORY_PROPERTY, graphFile.getAbsolutePath());
+		properties.put(MuleProperties.APP_HOME_DIRECTORY_PROPERTY,
+				graphFile.getAbsolutePath());
 
 		return properties;
 	}
@@ -69,8 +71,10 @@ public class AbstractTemplateTestCase extends FunctionalTestCase {
 		return (Flow) muleContext.getRegistry().lookupObject(flowName);
 	}
 
-	protected SubflowInterceptingChainLifecycleWrapper getSubFlow(String flowName) {
-		return (SubflowInterceptingChainLifecycleWrapper) muleContext.getRegistry().lookupObject(flowName);
+	protected SubflowInterceptingChainLifecycleWrapper getSubFlow(
+			String flowName) {
+		return (SubflowInterceptingChainLifecycleWrapper) muleContext
+				.getRegistry().lookupObject(flowName);
 	}
 
 }

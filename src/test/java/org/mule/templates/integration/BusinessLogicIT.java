@@ -81,10 +81,8 @@ public class BusinessLogicIT extends AbstractTemplateTestCase {
 				.anAccount()
 				.with("Name",
 						buildUniqueName(TEMPLATE_NAME, "_Name_" + sequence
-								+ "_"))
-				.with("Industry", "Education")
-				.with("Description", "Some account description")
-				.build();
+								+ "_")).with("Industry", "Education")
+				.with("Description", "Some account description").build();
 	}
 
 	protected String buildUniqueName(String templateName, String name) {

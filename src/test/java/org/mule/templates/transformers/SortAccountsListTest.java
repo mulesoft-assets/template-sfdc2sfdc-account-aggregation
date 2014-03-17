@@ -36,11 +36,13 @@ public class SortAccountsListTest {
 		MuleMessage message = new DefaultMuleMessage(originalList, muleContext);
 
 		SortAccountsList transformer = new SortAccountsList();
-		List<Map<String, String>> sortedList = (List<Map<String, String>>) transformer.transform(message, "UTF-8");
+		List<Map<String, String>> sortedList = (List<Map<String, String>>) transformer
+				.transform(message, "UTF-8");
 
 		// System.out.println(originalList);
 		// System.out.println(sortedList);
-		Assert.assertEquals("The merged list obtained is not as expected", createExpectedList(), sortedList);
+		Assert.assertEquals("The merged list obtained is not as expected",
+				createExpectedList(), sortedList);
 
 	}
 
@@ -54,7 +56,7 @@ public class SortAccountsListTest {
 
 		Map<String, String> account2 = createEmptyMergedRecord(2);
 		account2.put("IDInB", "2");
-		
+
 		Map<String, String> account3 = createEmptyMergedRecord(3);
 		account3.put("IDInA", "3");
 		account3.put("IDInB", "3");
@@ -64,7 +66,7 @@ public class SortAccountsListTest {
 		userList.add(account2);
 		userList.add(account1);
 		userList.add(account3);
-		
+
 		return userList;
 	}
 
@@ -78,7 +80,7 @@ public class SortAccountsListTest {
 
 		Map<String, String> account2 = createEmptyMergedRecord(2);
 		account2.put("IDInB", "2");
-		
+
 		Map<String, String> account3 = createEmptyMergedRecord(3);
 		account3.put("IDInA", "3");
 		account3.put("IDInB", "3");
