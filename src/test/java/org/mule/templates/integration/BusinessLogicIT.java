@@ -16,7 +16,7 @@ import org.mule.tck.junit4.rule.DynamicPort;
 
 /**
  * The objective of this class is to validate the correct behavior of the flows
- * for this Mule Kick that make calls to external systems.
+ * for this Mule Template that make calls to external systems.
  * 
  */
 public class BusinessLogicIT extends AbstractTemplateTestCase {
