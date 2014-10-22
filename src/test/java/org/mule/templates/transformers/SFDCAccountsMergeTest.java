@@ -17,38 +17,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
-import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
-import org.mule.templates.builders.SfdcObjectBuilder;
-import org.mule.templates.transformers.SFDCAccountsMerge;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SFDCAccountsMergeTest {
-	private static final String ACCOUNTS_COMPANY_A = "accountsFromOrgA";
-	private static final String ACCOUNTS_COMPANY_B = "accountsFromOrgB";
-
+	
 	@Mock
 	private MuleContext muleContext;
 
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testMerge() throws TransformerException {
 		List<Map<String, String>> accountsA = createAccountLists("A", 0, 1);
 		List<Map<String, String>> accountsB = createAccountLists("B", 1, 2);
 
-		MuleMessage message = new DefaultMuleMessage(null, muleContext);
-		message.setInvocationProperty(ACCOUNTS_COMPANY_A, accountsA.iterator());
-		message.setInvocationProperty(ACCOUNTS_COMPANY_B, accountsB.iterator());
-
-		SFDCAccountsMerge transformer = new SFDCAccountsMerge();
-		List<Map<String, String>> mergedList = (List<Map<String, String>>) transformer
-				.transform(message, "UTF-8");
-
-		System.out.println(accountsA);
-		System.out.println(accountsB);
-		System.out.println(mergedList);
+		SFDCAccountsMerge sfdcAccountMerge = new SFDCAccountsMerge();
+		List<Map<String, String>> mergedList = sfdcAccountMerge.mergeList(accountsA, accountsB);
 
 		Assert.assertEquals("The merged list obtained is not as expected",
 				createExpectedList(), mergedList);

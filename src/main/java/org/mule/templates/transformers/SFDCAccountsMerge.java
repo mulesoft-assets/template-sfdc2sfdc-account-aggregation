@@ -8,15 +8,8 @@ package org.mule.templates.transformers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.mule.api.MuleMessage;
-import org.mule.api.transformer.TransformerException;
-import org.mule.transformer.AbstractMessageTransformer;
-
-import com.google.common.collect.Lists;
 
 /**
  * This transformer will take two lists as input and create a third one that
@@ -25,23 +18,7 @@ import com.google.common.collect.Lists;
  * 
  * @author damian.sima
  */
-public class SFDCAccountsMerge extends AbstractMessageTransformer {
-
-	private static final String ACCOUNTS_COMPANY_A = "accountsFromOrgA";
-	private static final String ACCOUNTS_COMPANY_B = "accountsFromOrgB";
-
-	@Override
-	public Object transformMessage(MuleMessage message, String outputEncoding) throws TransformerException {
-
-		List<Map<String, String>> mergedUsersList = mergeList(getAccountsList(message, ACCOUNTS_COMPANY_A), getAccountsList(message, ACCOUNTS_COMPANY_B));
-
-		return mergedUsersList;
-	}
-
-	private List<Map<String, String>> getAccountsList(MuleMessage message, String propertyName) {
-		Iterator<Map<String, String>> iterator = message.getInvocationProperty(propertyName);
-		return Lists.newArrayList(iterator);
-	}
+public class SFDCAccountsMerge {
 
 	/**
 	 * The method will merge the accounts from the two lists creating a new one.
@@ -52,10 +29,10 @@ public class SFDCAccountsMerge extends AbstractMessageTransformer {
 	 *            accounts from organization B
 	 * @return a list with the merged content of the to input lists
 	 */
-	private List<Map<String, String>> mergeList(List<Map<String, String>> accountsFromOrgA, List<Map<String, String>> accountsFromOrgB) {
+	List<Map<String, String>> mergeList(List<Map<String, String>> accountsFromOrgA, List<Map<String, String>> accountsFromOrgB) {
 		List<Map<String, String>> mergedAccountList = new ArrayList<Map<String, String>>();
 
-		// Put all accounts from A in the merged contactList
+		// Put all accounts from A in the merged List
 		for (Map<String, String> accountFromA : accountsFromOrgA) {
 			Map<String, String> mergedAccount = createMergedAccount(accountFromA);
 			mergedAccount.put("IDInA", accountFromA.get("Id"));

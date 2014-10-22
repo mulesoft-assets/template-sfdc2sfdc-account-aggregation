@@ -21,7 +21,6 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
-import org.mule.templates.transformers.SortAccountsList;
 
 /**
  * The test validates that the {@link SortAccountsList} properly order a list of
@@ -39,14 +38,12 @@ public class SortAccountsListTest {
 	@SuppressWarnings("unchecked")
 	public void testSort() throws TransformerException {
 		List<Map<String, String>> originalList = createOriginalList();
-		MuleMessage message = new DefaultMuleMessage(originalList, muleContext);
+		MuleMessage message = new DefaultMuleMessage(originalList.iterator(), muleContext);
 
 		SortAccountsList transformer = new SortAccountsList();
 		List<Map<String, String>> sortedList = (List<Map<String, String>>) transformer
 				.transform(message, "UTF-8");
 
-		// System.out.println(originalList);
-		// System.out.println(sortedList);
 		Assert.assertEquals("The merged list obtained is not as expected",
 				createExpectedList(), sortedList);
 
