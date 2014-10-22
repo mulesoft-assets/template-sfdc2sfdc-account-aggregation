@@ -38,7 +38,7 @@ public class SFDCAccountsMergeTest {
 				createExpectedList(), mergedList);
 	}
 
-	private List<Map<String, String>> createExpectedList() {
+	static List<Map<String, String>> createExpectedList() {
 
 		Map<String, String> account0 = createEmptyMergedRecord(0);
 		account0.put("IDInA", "0");
@@ -58,15 +58,15 @@ public class SFDCAccountsMergeTest {
 		account2.put("IndustryInB", "Goverment");
 		account2.put("NumberOfEmployeesInB", "550.0");
 
-		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(account0);
-		userList.add(account1);
-		userList.add(account2);
+		List<Map<String, String>> accountList = new ArrayList<Map<String, String>>();
+		accountList.add(account0);
+		accountList.add(account1);
+		accountList.add(account2);
 
-		return userList;
+		return accountList;
 	}
 
-	private Map<String, String> createEmptyMergedRecord(Integer secuense) {
+	static Map<String, String> createEmptyMergedRecord(Integer secuense) {
 		Map<String, String> account = new HashMap<String, String>();
 		account.put("Name", "SomeName_" + secuense);
 		account.put("IDInA", "");
@@ -78,16 +78,16 @@ public class SFDCAccountsMergeTest {
 		return account;
 	}
 
-	private List<Map<String, String>> createAccountLists(String orgId,
+	static List<Map<String, String>> createAccountLists(String orgId,
 			int start, int end) {
-		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
+		List<Map<String, String>> accountList = new ArrayList<Map<String, String>>();
 		for (int i = start; i <= end; i++) {
-			userList.add(createAccount(orgId, i));
+			accountList.add(createAccount(orgId, i));
 		}
-		return userList;
+		return accountList;
 	}
 
-	private Map<String, String> createAccount(String orgId, int sequence) {
+	static Map<String, String> createAccount(String orgId, int sequence) {
 		Map<String, String> account = new HashMap<String, String>();
 
 		account.put("Id", new Integer(sequence).toString());

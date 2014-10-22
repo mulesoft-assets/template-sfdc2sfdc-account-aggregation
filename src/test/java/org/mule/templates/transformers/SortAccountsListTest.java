@@ -64,13 +64,13 @@ public class SortAccountsListTest {
 		account3.put("IDInA", "3");
 		account3.put("IDInB", "3");
 
-		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(account0);
-		userList.add(account2);
-		userList.add(account1);
-		userList.add(account3);
+		List<Map<String, String>> accountList = new ArrayList<Map<String, String>>();
+		accountList.add(account0);
+		accountList.add(account2);
+		accountList.add(account1);
+		accountList.add(account3);
 
-		return userList;
+		return accountList;
 	}
 
 	private List<Map<String, String>> createOriginalList() {
@@ -88,13 +88,13 @@ public class SortAccountsListTest {
 		account3.put("IDInA", "3");
 		account3.put("IDInB", "3");
 
-		List<Map<String, String>> userList = new ArrayList<Map<String, String>>();
-		userList.add(account0);
-		userList.add(account1);
-		userList.add(account2);
-		userList.add(account3);
+		List<Map<String, String>> accountList = new ArrayList<Map<String, String>>();
+		accountList.add(account0);
+		accountList.add(account1);
+		accountList.add(account2);
+		accountList.add(account3);
 
-		return userList;
+		return accountList;
 	}
 
 	private Map<String, String> createEmptyMergedRecord(Integer secuense) {
