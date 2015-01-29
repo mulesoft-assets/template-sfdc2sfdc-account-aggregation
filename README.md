@@ -1,5 +1,5 @@
 
-# Anypoint Template: Salesforce to Salesforce Account Aggregation
+# Anypoint Template: Salesforce Org to Org Account Aggregation
 
 + [License Agreement](#licenseagreement)
 + [Use Case](#usecase)
@@ -79,12 +79,13 @@ column='486'
 
 ### As destination of data
 
-There are no particular considerations for this Anypoint Template regarding Siebel as data destination.
+There are no particular considerations for this Anypoint Template regarding Salesforce as data destination.
+
 
 
 
 # Run it! <a name="runit"/>
-Simple steps to get Salesforce to Salesforce Account Aggregation running.
+Simple steps to get Salesforce Org to Org Account Aggregation running.
 See below.
 
 ## Running on premise <a name="runonopremise"/>
@@ -122,7 +123,7 @@ Once you have imported you Anypoint Template into Anypoint Studio you need to fo
 
 
 ### Running on Mule ESB stand alone <a name="runonmuleesbstandalone"/>
-Complete all properties in one of the property files, for example in [mule.prod.properties] (../blob/master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variable to use it. To follow the example, this will be `mule.env=prod`. 
+Complete all properties in one of the property files, for example in [mule.prod.properties] (../master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variable to use it. To follow the example, this will be `mule.env=prod`. 
 
 
 ## Running on CloudHub <a name="runoncloudhub"/>
@@ -241,7 +242,8 @@ This is the file where you will found the inbound and outbound sides of your int
 
 
 ## errorHandling.xml<a name="errorhandlingxml"/>
-Contains a [Catch Exception Strategy](http://www.mulesoft.org/documentation/display/current/Catch+Exception+Strategy) that is only Logging the exception thrown (If so). As you imagine, this is the right place to handle how your integration will react depending on the different exceptions.
+This is the right place to handle how your integration will react depending on the different exceptions. 
+This file holds a [Choice Exception Strategy](http://www.mulesoft.org/documentation/display/current/Choice+Exception+Strategy) that is referenced by the main flow in the business logic.
 
 
 
