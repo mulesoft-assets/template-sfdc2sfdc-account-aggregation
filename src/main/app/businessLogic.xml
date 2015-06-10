@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:weave="http://www.mulesoft.org/schema/mule/ee/weave" 
-xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc" 
-xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" 
+<mule xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:weave="http://www.mulesoft.org/schema/mule/ee/weave" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" 
+xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc"
 xmlns="http://www.mulesoft.org/schema/mule/core" 
 xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
 xmlns:spring="http://www.springframework.org/schema/beans" 
-version="EE-3.7.0" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+version="EE-3.7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/sfdc http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/ee/weave http://www.mulesoft.org/schema/mule/ee/weave/current/weave.xsd">
 
 
@@ -25,7 +23,7 @@ This flow should control the direction of the application, and it should be call
         <exception-strategy ref="defaultChoiceExceptionStrategy" doc:name="Reference Exception Strategy"/>
     </flow>
   
-    <flow name="gatherDataFlow" >
+    <flow name="gatherDataFlow" processingStrategy="synchronous">
         <scatter-gather doc:name="Scatter-Gather">
             <custom-aggregation-strategy class="org.mule.templates.transformers.SFDCAccountMergeAggregationStrategy"/>
             <sfdc:query config-ref="SalesforceB" query="dsql:SELECT Id,AccountNumber,Description,Industry,Name,NumberOfEmployees FROM Account" doc:name="query all accounts from SalesForce instance B"/>
@@ -35,7 +33,7 @@ This flow should control the direction of the application, and it should be call
     </flow>
 
     
-    <flow name="formatOutputFlow" >
+    <flow name="formatOutputFlow" processingStrategy="synchronous">
         <custom-transformer class="org.mule.templates.transformers.SortAccountsList" doc:name="Custom component to sort accounts list"/>
         <weave:transform-message doc:name="Map Collection to CSV">
             <weave:set-payload><![CDATA[%weave 0.1
