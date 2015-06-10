@@ -16,10 +16,12 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
+import org.mule.api.config.MuleConfiguration;
 import org.mule.api.transformer.TransformerException;
 
 /**
@@ -33,10 +35,17 @@ public class SortAccountsListTest {
 
 	@Mock
 	private MuleContext muleContext;
+	
+	@Mock
+	private MuleConfiguration muleConfiguration;
 
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testSort() throws TransformerException {
+		
+		Mockito.when(muleContext.getConfiguration()).thenReturn(muleConfiguration);
+		Mockito.when(muleConfiguration.getDefaultEncoding()).thenReturn("UTF-8");
+		
 		List<Map<String, String>> originalList = createOriginalList();
 		MuleMessage message = new DefaultMuleMessage(originalList.iterator(), muleContext);
 

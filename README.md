@@ -84,6 +84,10 @@ There are no particular considerations for this Anypoint Template regarding Sale
 
 
 
+
+
+
+
 # Run it! <a name="runit"/>
 Simple steps to get Salesforce Org to Org Account Aggregation running.
 See below.
