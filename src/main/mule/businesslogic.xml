@@ -56,7 +56,15 @@ fun sortBySourceExistence (accounts) = ((accounts map (account) -> (
     )
 ) orderBy $.sortValue ) map $ -"sortValue"
 ---
-sortBySourceExistence(mergedAccounts)]]></ee:set-payload>
+sortBySourceExistence(mergedAccounts) map (account) -> {
+	"Name": account.Name,
+	"IDInA": account.IDInA,
+	"IndustryInA": account.IndustryInA,
+	"NumberOfEmployeesInA": account.NumberOfEmployeesInA,
+	"IDInB": account.IDInB,
+	"IndustryInB": account.IndustryInB,
+	"NumberOfEmployeesInB": account.NumberOfEmployeesInB
+ }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 		<email:send config-ref="Gmail_SMTP" doc:name="Send migration result email"
