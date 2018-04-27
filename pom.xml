@@ -58,10 +58,10 @@
 			<classifier>mule-plugin</classifier>
 		</dependency>
     	<dependency>
-            <groupId>org.mule.connectors</groupId>
-            <artifactId>mule-sfdc-connector</artifactId>
-            <classifier>mule-plugin</classifier>
-        </dependency>
+			<groupId>com.mulesoft.connectors</groupId>
+			<artifactId>mule-salesforce-connector</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
         <dependency>
 			<groupId>com.mulesoft.munit</groupId>
 			<artifactId>munit-runner</artifactId>
