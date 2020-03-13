@@ -61,12 +61,12 @@ output application/java
 				<ee:set-variable variableName="IdsA" ><![CDATA[%dw 2.0
 output application/java
 ---
-payload map ($.id)]]></ee:set-variable>
+payload.items map ($.id)]]></ee:set-variable>
 			</ee:variables>
 			</ee:transform>
-		<salesforce:create type="Account" doc:name="Create Accounts in instance B" doc:id="7d3d2b67-2b6a-41db-b759-5a912281455d" config-ref="Salesforce_Sfdc_B_config"/>
-		<set-variable value="#[payload map ($.id)]" doc:name="Store Ids from B" doc:id="c893cd3f-1bb7-4e51-aa87-bfd9eaedf345" variableName="IdsB"/>
-		<munit-tools:mock-when doc:name="Mock email processor to avoid sending email" doc:id="17ab3357-3f08-4456-9f14-c41c281e06f1" processor="email:send">
+        <salesforce:create type="Account" doc:name="Create Accounts in instance B" doc:id="7d3d2b67-2b6a-41db-b759-5a912281455d" config-ref="Salesforce_Sfdc_B_config"/>
+		<set-variable value="#[payload.items map ($.id)]" doc:name="Store Ids from B" doc:id="c893cd3f-1bb7-4e51-aa87-bfd9eaedf345" variableName="IdsB"/>
+        <munit-tools:mock-when doc:name="Mock email processor to avoid sending email" doc:id="17ab3357-3f08-4456-9f14-c41c281e06f1" processor="email:send">
 				<munit-tools:then-return />
 			</munit-tools:mock-when>
 	</munit:before-test>
