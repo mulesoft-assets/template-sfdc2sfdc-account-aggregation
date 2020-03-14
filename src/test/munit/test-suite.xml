@@ -98,10 +98,10 @@ payload filter ($.Name == "TestRecord1" or $.Name == "TestRecord2" or $.Name == 
 	
 	<munit:after-test name="test-suiteAfter_Test" description="After tests actions" doc:id="5b85bb9e-67e6-47f7-8f71-53a39f147fc8" >
 		<salesforce:delete doc:name="Delete source Accounts in instance A" doc:id="788956ca-8ada-49c2-a3f7-7eb367e735b4" config-ref="Salesforce_Sfdc_A_config">
-				<salesforce:delete-ids><![CDATA[#[vars.IdsA]]]></salesforce:delete-ids>
+				<salesforce:ids><![CDATA[#[vars.IdsA]]]></salesforce:ids>
 			</salesforce:delete>
 		<salesforce:delete doc:name="Delete source Accounts in instance B" doc:id="c7151831-572a-4986-927c-733614bcbc9e" config-ref="Salesforce_Sfdc_B_config">
-			<salesforce:delete-ids ><![CDATA[#[vars.IdsB]]]></salesforce:delete-ids>
+			<salesforce:ids ><![CDATA[#[vars.IdsB]]]></salesforce:ids>
 		</salesforce:delete>
 	</munit:after-test>
 </mule>
