@@ -61,12 +61,12 @@ output application/java
 				<ee:set-variable variableName="IdsA" ><![CDATA[%dw 2.0
 output application/java
 ---
-payload map ($.id)]]></ee:set-variable>
+payload.items map ($.id)]]></ee:set-variable>
 			</ee:variables>
 			</ee:transform>
-		<salesforce:create type="Account" doc:name="Create Accounts in instance B" doc:id="7d3d2b67-2b6a-41db-b759-5a912281455d" config-ref="Salesforce_Sfdc_B_config"/>
-		<set-variable value="#[payload map ($.id)]" doc:name="Store Ids from B" doc:id="c893cd3f-1bb7-4e51-aa87-bfd9eaedf345" variableName="IdsB"/>
-		<munit-tools:mock-when doc:name="Mock email processor to avoid sending email" doc:id="17ab3357-3f08-4456-9f14-c41c281e06f1" processor="email:send">
+        <salesforce:create type="Account" doc:name="Create Accounts in instance B" doc:id="7d3d2b67-2b6a-41db-b759-5a912281455d" config-ref="Salesforce_Sfdc_B_config"/>
+		<set-variable value="#[payload.items map ($.id)]" doc:name="Store Ids from B" doc:id="c893cd3f-1bb7-4e51-aa87-bfd9eaedf345" variableName="IdsB"/>
+        <munit-tools:mock-when doc:name="Mock email processor to avoid sending email" doc:id="17ab3357-3f08-4456-9f14-c41c281e06f1" processor="email:send">
 				<munit-tools:then-return />
 			</munit-tools:mock-when>
 	</munit:before-test>
@@ -98,10 +98,10 @@ payload filter ($.Name == "TestRecord1" or $.Name == "TestRecord2" or $.Name == 
 	
 	<munit:after-test name="test-suiteAfter_Test" description="After tests actions" doc:id="5b85bb9e-67e6-47f7-8f71-53a39f147fc8" >
 		<salesforce:delete doc:name="Delete source Accounts in instance A" doc:id="788956ca-8ada-49c2-a3f7-7eb367e735b4" config-ref="Salesforce_Sfdc_A_config">
-				<salesforce:delete-ids><![CDATA[#[vars.IdsA]]]></salesforce:delete-ids>
+				<salesforce:ids><![CDATA[#[vars.IdsA]]]></salesforce:ids>
 			</salesforce:delete>
 		<salesforce:delete doc:name="Delete source Accounts in instance B" doc:id="c7151831-572a-4986-927c-733614bcbc9e" config-ref="Salesforce_Sfdc_B_config">
-			<salesforce:delete-ids ><![CDATA[#[vars.IdsB]]]></salesforce:delete-ids>
+			<salesforce:ids ><![CDATA[#[vars.IdsB]]]></salesforce:ids>
 		</salesforce:delete>
 	</munit:after-test>
 </mule>
